@@ -3,7 +3,6 @@
 ![Java](https://img.shields.io/badge/Java-17-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-orange)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 A multi-tenant SaaS platform designed for small to medium-sized hotels and cafes. Innsync provides modern digital tools to streamline operations, including QR-based table ordering, digital menu management, and integrated billing.
 
