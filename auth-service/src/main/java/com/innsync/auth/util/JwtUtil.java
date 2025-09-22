@@ -11,6 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.innsync.auth.entities.Owner;
+
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,13 +31,20 @@ public class JwtUtil {
     public String generateToken(UserDetails userDetails) {
         // Creates an empty map to hold any extra data (claims) you might want to add to the token.
         Map<String, Object> claims = new HashMap<>();
-        
+        Owner owner = (Owner) userDetails; // Cast to our custom Owner class
+
         String role=userDetails.getAuthorities().stream()
         		.findFirst()
         		.map(GrantedAuthority::getAuthority)
         		.orElse("USER");
         
         claims.put("role", role);
+        
+        // For our "one owner, one business" MVP, we'll take the ID of the first business.
+        if (owner.getBusinesses() != null && !owner.getBusinesses().isEmpty()) {
+            Long tenantId = owner.getBusinesses().get(0).getId();
+            claims.put("tenantId", tenantId);
+        }
         
         // Calls the private helper method to actually build the token string.
         return createToken(claims, userDetails.getUsername());
