@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.innsync.auth.entities.Owner;
 
 @Repository
-public interface OwnerRepository extends JpaRepository<Owner, Integer>{
+public interface OwnerRepository extends JpaRepository<Owner, Long>{
 	// This method will be automatically implemented by Spring Data JPA
     Optional<Owner> findByEmail(String email);
     

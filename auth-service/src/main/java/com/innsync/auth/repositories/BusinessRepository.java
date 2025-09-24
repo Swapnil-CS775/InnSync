@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.innsync.auth.entities.Business;
 
 @Repository
-public interface BusinessRepository extends JpaRepository<Business, Integer>{
+public interface BusinessRepository extends JpaRepository<Business, Long>{
 	
 }
