@@ -5,21 +5,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.innsync.menu.dto.ItemRequestDto;
 import com.innsync.menu.dto.ItemResponseDto;
 import com.innsync.menu.entity.MenuCategory;
 import com.innsync.menu.entity.MenuItem;
+import com.innsync.menu.exception.ResourceNotFoundException;
 import com.innsync.menu.repository.MenuCategoryRepository;
 import com.innsync.menu.repository.MenuItemRepository;
 import com.innsync.menu.service.MenuItemService;
-import com.innsync.menu.util.JwtUtil;
 
 
 @Service
@@ -82,7 +78,7 @@ public class MenuItemServiceImpl implements MenuItemService{
 	public ItemResponseDto updateItem(Long tenantId, Long itemId, ItemRequestDto dto) {
 	    // 1. Fetch the existing MenuItem from the database. It is now a 'managed' entity.
 	    MenuItem menuItem = menuItemRepository.findById(itemId)
-	            .orElseThrow(() -> new RuntimeException("Item not found"));
+	            .orElseThrow(() -> new ResourceNotFoundException("Item not found"));
 
 	    // 2. Security Check: Verify the owner.
 	    if (!menuItem.getTenantId().equals(tenantId)) {
