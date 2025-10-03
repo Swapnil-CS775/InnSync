@@ -12,4 +12,6 @@ public interface MenuItemService {
     ItemResponseDto updateItem(Long tenantId, Long itemId, ItemRequestDto itemRequestDto);
 
     void deleteItem(Long tenantId, Long itemId);
+    
+    ItemResponseDto getPublicItemById(Long itemId);
 }

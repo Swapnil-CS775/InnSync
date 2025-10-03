@@ -121,5 +121,13 @@ public class MenuItemServiceImpl implements MenuItemService{
 	    menuItemRepository.delete(menuItem);
 	}
 
+	@Override
+	public ItemResponseDto getPublicItemById(Long itemId) {
+		MenuItem menuItem = menuItemRepository.findById(itemId)
+	            .orElseThrow(() -> new RuntimeException("MenuItem not found"));
+	    return mapToItemResponseDto(menuItem);
+	}
+	
+	
 
 }
