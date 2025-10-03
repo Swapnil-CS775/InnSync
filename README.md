@@ -20,7 +20,7 @@ A multi-tenant SaaS platform designed for small to medium-sized hotels and cafes
 ### Backend
 * **Java 17+**
 * **Spring Boot 3.x**
-* **Spring Security:** For authentication and authorization (JWT planned).
+* **Spring Security:** For authentication and authorization (completed).
 * **Spring Data JPA / Hibernate:** For database interaction and ORM.
 * **MySQL / MariaDB:** Relational database for storing platform and tenant data.
 * **Maven:** For dependency management and build automation.
@@ -37,9 +37,9 @@ This project is structured as a **Monorepo** containing multiple independent **M
 
 ### Services
 
-* **`auth-service` (In Progress):** Handles owner registration, tenant provisioning, user login, and role management.
-* **`menu-service` (Planned):** Manages all menu-related operations for each tenant.
-* **`order-service` (Planned):** Manages the entire lifecycle of a customer's order.
+* **`auth-service` (completed):** Handles owner registration, tenant provisioning, user login, and role management.
+* **`menu-service` (completed):** Manages all menu-related operations for each tenant.
+* **`order-service` (completed):** Manages the entire lifecycle of a customer's order.
 * **`api-gateway` (Planned):** Single entry point for all client requests, routing traffic to the appropriate service.
 
 
