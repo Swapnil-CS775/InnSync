@@ -1,6 +1,6 @@
-package com.innsync.menu.config;
+package com.innsync.order.config;
 
-import com.innsync.menu.security.JwtAuthFilter;
+import com.innsync.order.security.JwtAuthFilter; // Assuming you copied these files
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,9 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // For now, we protect all endpoints. We can add public ones later if needed.
-            		.requestMatchers("/api/menu/items/public/**").permitAll()
+                // This rule makes the endpoint for starting an order public
+                .requestMatchers("/api/orders/start/**").permitAll()
+                // Any other request still requires authentication
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

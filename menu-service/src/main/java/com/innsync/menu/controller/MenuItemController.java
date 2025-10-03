@@ -72,4 +72,12 @@ public class MenuItemController {
         menuItemService.deleteItem(tenantId, id);
         return ResponseEntity.noContent().build();
     }
+    
+    @GetMapping("/public/{itemId}")
+    public ResponseEntity<ItemResponseDto> getPublicItemById(@PathVariable Long itemId) {
+        // We're not checking tenantId here because this is a service-to-service call.
+        // The order-service is responsible for sending a valid itemId for its tenant.
+        ItemResponseDto item = menuItemService.getPublicItemById(itemId);
+        return ResponseEntity.ok(item);
+    }
 }
